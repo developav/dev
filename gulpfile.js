@@ -4,7 +4,8 @@ const htmlMin = require('gulp-htmlmin')
 const autoprefixes = require('gulp-autoprefixer')
 const cleanCSS = require('gulp-clean-css')
 const svgSprite = require('gulp-svg-sprite')
-const imagemin = require('gulp-imagemin')
+const image = require('gulp-image')
+const fonts = require('gulp-fontfacegen')
 const babel = require('gulp-babel')
 const uglify = require('gulp-uglify-es').default
 const notify = require('gulp-notify')
@@ -17,7 +18,7 @@ const clean = () => {
 }
 const resourses = () => {
     return src('src/resourses/**')
-    .pipe(dest('dist'))
+    .pipe(dest('dist/docs'))
 }
 const stylesProd = () => {
     return src('src/css/**/*.css')
@@ -33,6 +34,16 @@ const stylesProd = () => {
     .pipe(browserSync.stream())
 }
 
+const fontGen = () => {
+    return src('src/fonts/*.{woff,woff2}')
+    .pipe(dest('dist/font'))
+    .pipe(fonts(
+        {
+            filepath: "dist",
+            filename: "fonts.css"
+        }
+    ))
+}
 const stylesDev = () => {
     return src('src/css/**/*.css')
     .pipe(concat('main.css'))
@@ -104,11 +115,32 @@ const watchFiles = () => {
         }
     })
 }
-const image = () => {
-    return src('src/img/*') // Исходные файлы
-    .pipe(imagemin()) // Оптимизируем изображения
-    .pipe(dest('dist/images')); // Папка назначения
-  }
+// const image = () => {
+//     return src('src/img/*') // Исходные файлы
+//     .pipe(imagemin()) // Оптимизируем изображения
+//     .pipe(dest('dist/images')); // Папка назначения
+//   }
+
+
+  const images = () => {
+    return src([
+        'src/img/**/*.jpg',
+        'src/img/**/*.png',
+        'src/img/*.svg',
+        'src/img/**/*.jpeg',
+    ])
+    .pipe(image())
+    .pipe(dest('dist/images'))
+}
+const imageMedia = () => {
+    return src([
+        'src/media/**/*.jpg',
+        'src/media/**/*.png',
+        'src/media/**/*.jpeg',
+    ])
+    .pipe(image())
+    .pipe(dest('dist/media-image'))
+}
 watch('src/**/*.html', htmlMinifyProd)
 watch('src/css/**/*.css', stylesProd)
 watch('src/css/**/*.css', stylesDev)
@@ -119,4 +151,4 @@ watch('src/resourses/**', resourses)
 
 exports.clean = clean
 // exports.dev = series(htmlMinifyDev,stylesDev,scriptsDev,svgSprites,watchFiles,imageOptim,images,imageMedia)
-exports.default = series(clean,resourses,htmlMinifyProd,image,scriptsProd,stylesProd,svgSprites,watchFiles)
+exports.default = series(clean,resourses,htmlMinifyProd,images,fontGen,imageMedia,scriptsProd,stylesProd,svgSprites,watchFiles)

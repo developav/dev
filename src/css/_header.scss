@@ -1,8 +1,32 @@
 .header {
+    &__block {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 11px 24px;
+        max-width: 100%;
+        max-height: 64px;
+        background-color: rgba(123, 74, 226, 0.05);
+    }
+    &__logo {
+        &-svg {
+            max-width: 36px;
+            max-height: 40px;
+        }
+    }
     &__nav {
         &-list{
             display: flex;
             flex-direction: row;
+            justify-content: space-between;
+            min-width: 710px;
+        }
+        &-item {
+
+        }
+        &-link {
+            font-size: 18px;
         }
     }
 }

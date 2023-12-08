@@ -1,0 +1,30 @@
+.experiense{
+    padding: 100px 0;
+    border-top: 1px solid rgba(123, 74, 226, 0.2);
+    border-bottom: 1px solid rgba(123, 74, 226, 0.2);
+    &__block{
+        display: flex;
+        justify-content: center;
+
+        &-prof{
+            display: flex;
+            justify-content: space-between;
+            min-width: 36%;
+        }
+        &-svg {
+            width: 72px;
+            height: 64px;
+        }
+        &-card{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 50px;
+            border: 1px solid rgba(123, 74, 226, 0.2);
+            &-descr {
+                font-size: 16px;
+            }
+        }
+    }
+} 
