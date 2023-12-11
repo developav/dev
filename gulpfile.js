@@ -101,7 +101,7 @@ const scriptsProd = () => {
 
 const scriptsDev = () => {
     return src([
-        'src/js/components/**/*.js',
+        'src/js/**/*.js',
         'src/js/main.js'
        ])
        .pipe(concat('app.js'))
@@ -115,13 +115,6 @@ const watchFiles = () => {
         }
     })
 }
-// const image = () => {
-//     return src('src/img/*') // Исходные файлы
-//     .pipe(imagemin()) // Оптимизируем изображения
-//     .pipe(dest('dist/images')); // Папка назначения
-//   }
-
-
   const images = () => {
     return src([
         'src/img/**/*.jpg',
@@ -151,4 +144,4 @@ watch('src/resourses/**', resourses)
 
 exports.clean = clean
 // exports.dev = series(htmlMinifyDev,stylesDev,scriptsDev,svgSprites,watchFiles,imageOptim,images,imageMedia)
-exports.default = series(clean,resourses,htmlMinifyProd,images,fontGen,imageMedia,scriptsProd,stylesProd,svgSprites,watchFiles)
+exports.default = series(clean,resourses,htmlMinifyProd,images,fontGen,imageMedia,scriptsDev,stylesProd,svgSprites,watchFiles)
