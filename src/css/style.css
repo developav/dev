@@ -280,10 +280,13 @@ li {
   display: flex;
 }
 .about__project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
+  margin-bottom: 40px;
+  min-height: 553px;
   padding: 30px 30px;
   max-width: 360px;
   border: 1px solid rgba(123, 74, 226, 0.5);
@@ -306,16 +309,16 @@ li {
 }
 .about__project-card-links {
   width: 300px;
-  height: 200px;
+  height: 60px;
   align-self: center;
   border: 1px solid transparent;
   border-radius: 10px;
 }
 .about__project-card-img {
   width: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
-  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  min-height: 62%;
   border-radius: 10px;
 }
 .about__develop {
@@ -329,11 +332,12 @@ li {
   vertical-align: text-bottom;
   background-color: rgba(255, 255, 255, 0.5);
   font-size: 20px;
-  padding-top: 86px;
+  padding-top: 230px;
   color: #ffffff;
   opacity: 0.6;
   width: 100%;
   height: 100%;
+  border-radius: 10px;
 }
 
 .tech {
